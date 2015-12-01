@@ -1,0 +1,19 @@
+<html>
+    <head>
+	<h1> Show user and password </h1>
+    </head>
+    <body>
+	<table border="1">
+	<th colspan="2">user and passwd</th>
+	<tr>
+	<td>user</td>
+	<td>passwd</td>
+	</tr>
+	{% for user in list_user %}
+	<tr>
+	<td>{{user.user}}</td>
+	<td>{{user.passwd}}</td>
+	</tr>
+	{% endfor %}	
+    </body>
+</html>
