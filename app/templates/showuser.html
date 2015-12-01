@@ -4,16 +4,21 @@
     </head>
     <body>
 	<table border="1">
-	<th colspan="2">user and passwd</th>
+	<th colspan="3">user and passwd</th>
 	<tr>
 	<td>user</td>
 	<td>passwd</td>
+	<td>delete</td>
 	</tr>
-	{% for user in list_user %}
-	<tr>
-	<td>{{user.user}}</td>
-	<td>{{user.passwd}}</td>
-	</tr>
-	{% endfor %}	
+	<form action="/delete">
+		{% for user in list_user %}
+		<tr>
+		<td>{{user.user}}</td>
+		<td>{{user.passwd}}</td>
+		<td><input type="checkbox" name={{user.user}} value={{user.passwd}}></td>
+		</tr>
+		{% endfor %}	
+		<input type="submit" value="DELETE">
+	</form>
     </body>
 </html>

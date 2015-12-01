@@ -39,5 +39,20 @@ def showuser():
 #	list_user = [{'user':'wang','passwd':'123'},{'user':'liu','passwd':'123'},{'user':'sun','passwd':'456'}]
 	return render_template("showuser.html",list_user = list_user)
 
+@app.route('/delete')
+def delete():
+	dict_del = request.args.items()
+	dict_user = {}
+	with open("userdata","a+") as f:
+		for line in f:
+			dict_user[line.split()[0]] = line.split()[1]
+	list_user = zip(*dict_del)[0]	
+	for i in list_user:
+		del dict_user[i]
+	with open("userdata","w") as f:
+		for i in dict_user.items():
+			tmp = ' '.join(i)+'\n'
+			f.writelines(tmp)
+	return render_template("showuser.html")
 if __name__ == '__main__':
 	app.run()
