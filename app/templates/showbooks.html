@@ -1,0 +1,26 @@
+<html>
+    <head>
+	<h1> Show user and password </h1>
+    </head>
+    <body>
+	<table border="1">
+	<th colspan="4">user and passwd</th>
+	<tr>
+	<td>user</td>
+	<td>passwd</td>
+	<td>nums</td>
+	<td>delete</td>
+	</tr>
+	<form action="/deletebooks">
+		{% for book in list_books %}
+		<tr>
+		<td>{{book.bookname}}</td>
+		<td>{{book.author}}</td>
+		<td>{{book.nums}}</td>
+		<td><input type="checkbox" name={{book.bookname}} value={{book.nums}}></td>
+		</tr>
+		{% endfor %}	
+		<input type="submit" value="DELETE">
+	</form>
+    </body>
+</html>
