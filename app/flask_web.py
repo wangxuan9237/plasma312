@@ -1,6 +1,9 @@
 from flask import Flask,render_template,request,redirect
 app = Flask(__name__)
 
+@app.route('/user/')
+def user ():
+	return render_template('user.html')
 @app.route('/')
 @app.route('/index')
 def index():
