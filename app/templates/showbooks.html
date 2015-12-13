@@ -25,38 +25,77 @@
       <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+<style>
+	.container{
+		margin-top:50px;
+	}
+ th {text-align:center}
+</style>
   </head>
 
   <body>
 
+<div class="container">
+<div class="col-md-8 col-md-offset-2 text-center">
 
 <div class="bs-example" data-example-id="hoverable-table">
-    <form action="/deletebooks">
+    <form name="bookform" action="/deletebooks" method="GET">
     <table class="table table-hover">
       <thead>
         <tr>
-          <th>#</th>
-          <th>BookName</th>
-          <th>Author</th>
-          <th>Nums</th>
-          <th>select</th>
+<!--          <th>#</th> -->
+          <th>序号</th>
+          <th>书名</th>
+          <th>数量</th>
+          <th>选择</th>
         </tr>
       </thead>
       <tbody>
 	{% for book in list_books %}
         <tr>
-          <th scope="row">1</th>
+<!--          <th scope="row">1</th> -->
+          <td>{{book.bookid}}</td>
           <td>{{book.bookname}}</td>
-          <td>{{book.author}}</td>
           <td>{{book.nums}}</td>
-          <td><input type="checkbox" name={{book.bookname}} value={{book.nums}}></td>
+          <td><input type="checkbox" name={{book.bookid}} value={{book.remark}}></td>
         </tr>
 	{% endfor %}
       </tbody>
     </table>
-   <input class="btn btn-default" type="submit" value="DELETE">
+</div>
+<div class="row">
+<div class="col-md-3 col-md-offset-9 "> 
+
+ <input type="button" class="btn btn-default" value="借书" onclick="deleteAction()">
+ <input type="button" class="btn btn-default" value="还书" onclick="addAction()">
+
+<script type="text/javascript">
+function addAction(){
+    document.bookform.action="/addbooks";
+    document.bookform.submit();
+}
+ 
+function deleteAction(){
+    document.bookform.action="/deletebooks";
+    document.bookform.submit();
+}
+ 
+function saveAction(){
+    document.demo.action="your add save url";
+    document.demo.submit();
+}
+ 
+function searchAction(){
+    document.demo.action="your serach method url";
+    document.demo.submit();
+}
+</script>
+</div>
+</div>
+
   </form>
   </div><!-- /example --> 
+<div class="col-md-12 col-md-offset-1 block-center">
 <nav>
   <ul class="pagination">
     <li>
@@ -64,11 +103,9 @@
         <span aria-hidden="true">&laquo;</span>
       </a>
     </li>
-    <li><a href="#">1</a></li>
-    <li><a href="#">2</a></li>
-    <li><a href="#">3</a></li>
-    <li><a href="#">4</a></li>
-    <li><a href="#">5</a></li>
+	{% for page in range(1,pages+1) %}
+    <li><a href="?page={{ page }}">{{ page }}</a></li>
+	{% endfor %}
     <li>
       <a href="#" aria-label="Next">
         <span aria-hidden="true">&raquo;</span>
@@ -76,6 +113,8 @@
     </li>
   </ul>
 </nav>
+</div>
+</div>
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="../static/ie10-viewport-bug-workaround.js"></script>

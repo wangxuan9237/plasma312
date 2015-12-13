@@ -1,0 +1,18 @@
+<uwsgi>
+ 
+    <pythonpath>[/root/microblog/app]</pythonpath>
+ 
+    <module>[flask_web]</module>
+ 
+    <callable>[app]</callable>
+ 
+    <socket>0.0.0.0:8000</socket>      #注： 指定某个固定端口
+ 
+
+    <master/>
+ 
+    <processes>4</processes>                #注：跑几个进程，这里用4个进程
+ 
+    <memory-report/>
+ 
+</uwsgi>
